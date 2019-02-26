@@ -2,17 +2,37 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="google-signin-scope" content="profile email">
         <meta name="google-signin-client_id" content="552441765234-shlt7jmcoiqhr0bhhpcqfe7qo87b0921.apps.googleusercontent.com">
-        <title>Test Site: Index</title>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="https://apis.google.com/js/platform.js" async defer>
+        <title>Test Site: Index</title>
+    </head>
+
+    <body>
+        <a id="home" href="index.html"><h1>Index/Landing Page</h1></a>
+        <p>Hello World!</p>
+
+        <!-- Google Sign In Button -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+        <!-- Javascript Functions -->
+        <script>
             function onSignIn(googleUser) {
                 console.log('HELLOOOOOO!')
+                // Useful data for your client-side scripts:
                 var profile = googleUser.getBasicProfile();
                 console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
                 console.log('Name: ' + profile.getName());
                 console.log('Image URL: ' + profile.getImageUrl());
                 console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
             }
 
             function signOut() {
@@ -22,13 +42,6 @@
                 });
             }
         </script>
-    </head>
-    <body>
-        <a id="home" href="index.html"><h1>Index/Landing Page</h1></a>
-        <p>Hello World!</p>
-
-        <!-- Google Sign In Button -->
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
         <!-- Sign User Out of Pensive App but not Google Account -->
         <a href="#" onclick="signOut();">Sign out</a>
