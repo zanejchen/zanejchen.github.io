@@ -5,23 +5,6 @@
         <meta name="google-signin-client_id" content="552441765234-shlt7jmcoiqhr0bhhpcqfe7qo87b0921.apps.googleusercontent.com">
         <title>Test Site: Index</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <a id="home" href="index.html"><h1>Index/Landing Page</h1></a>
-        <p>Hello World!</p>
-
-        <!-- Google Sign In Button -->
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-        <!-- Sign User Out of Pensive App but not Google Account -->
-        <a href="#" onclick="signOut();">Sign out</a>
-
-        <p> Press below for I N S T R U C T O R </p>
-        <button style="background-color:blue"><a class="a-override" href="instructor.html">Instructor</a></button>
-
-        <p> Press below for S T U D E N T </p>
-        <button style="background-color:green"><a class="a-override" href="student.html">Student</a></button>
-
         <script src="https://apis.google.com/js/platform.js" async defer>
             function onSignIn(googleUser) {
                 console.log('HELLOOOOOO!')
@@ -39,5 +22,21 @@
                 });
             }
         </script>
+    </head>
+    <body>
+        <a id="home" href="index.html"><h1>Index/Landing Page</h1></a>
+        <p>Hello World!</p>
+
+        <!-- Google Sign In Button -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+        <!-- Sign User Out of Pensive App but not Google Account -->
+        <a href="#" onclick="signOut();">Sign out</a>
+
+        <p> Press below for I N S T R U C T O R </p>
+        <button style="background-color:blue"><a class="a-override" href="instructor.html">Instructor</a></button>
+
+        <p> Press below for S T U D E N T </p>
+        <button style="background-color:green"><a class="a-override" href="student.html">Student</a></button>
     </body>
 </html>
