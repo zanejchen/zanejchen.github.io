@@ -5,7 +5,7 @@
         <title>Test Site: Student</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body>
+    <body onload="hiStudent()">
         <h1>Student Page</h1>
         Hello World!
 
@@ -15,22 +15,23 @@
         <button><a href="index.html">Back</a></button>
 
         <script>
-            // function onSignIn(googleUser)
-            console.log('Condragulations.')
-            console.log('Successful redirection from login to the student.html page after sign-in.')
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            // console.log('Profile: ' + profile):
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            function hiStudent(googleUser) {
+                console.log('Condragulations.')
+                console.log('Successful redirection from login to the student.html page after sign-in.')
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                // console.log('Profile: ' + profile):
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+            }
         </script>
 
     </body>
