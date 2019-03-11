@@ -10,63 +10,67 @@
         <title>Test Site: Index</title>
     </head>
 
+    <!-- Javascript Functions -->
+    <script>
+        function onSignIn(googleUser) {
+            console.log('HELLOOOOOO!')
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            // console.log('Profile: ' + profile):
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+            let id_email = profile.getEmail();
+            let id_uname = id_email.substring(0, id_email.indexOf('@'));
+            console.log('Uniquename: ' + id_uname);
+
+            // The ID token you need to pass to your backend:
+            var authRes = googleUser.getAuthResponse();
+            console.log('AuthRes id_token: ' + authRes.id_token);
+            console.log('AuthRes access_token: ' + authRes.access_token);
+            console.log('AuthRes scope: ' + authRes.scope);
+            console.log('AuthRes expires_in: ' + authRes.expires_in);
+            console.log('AuthRes first_issued_at: ' + authRes.first_issued_at);
+            console.log('AuthRes expires_at: ' + authRes.expires_at);
+
+            // postAJAX('/server/sign-in', {id_token: id_token})
+            // .then(function(user) {
+            //     // The user is now signed in on the server too
+            //     // and the user should now have a session cookie
+            //     // for the whole site.
+            //     console.log('user.username: ' + user.username)
+            //     document.location.href = '/dashboard/' + user.username;
+            // })
+            // $.post("***URL-HERE***",
+            // {
+            //     id_token: id_token,
+            //     uniquename:
+            // });
+        }
+
+        function onFailure() {
+            console.log('Google Sign-In Failure: Something went wrong.');
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+            });
+        }
+    </script>
+
     <body>
         <a id="home" href="index.html"><h1>Index/Landing Page</h1></a>
         <p>Hello World!</p>
 
         <!-- Google Sign In Button -->
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onFailure"></div>
         <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-redirecturi="	https://zanejchen.github.io/student.html"></div> -->
-
-        <!-- Javascript Functions -->
-        <script>
-            function onSignIn(googleUser) {
-                console.log('HELLOOOOOO!')
-                // Useful data for your client-side scripts:
-                var profile = googleUser.getBasicProfile();
-                // console.log('Profile: ' + profile):
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Full Name: ' + profile.getName());
-                console.log('Given Name: ' + profile.getGivenName());
-                console.log('Family Name: ' + profile.getFamilyName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-                let id_email = profile.getEmail();
-                let id_uname = id_email.substring(0, id_email.indexOf('@'));
-                console.log('Uniquename: ' + id_uname);
-
-                // The ID token you need to pass to your backend:
-                var authRes = googleUser.getAuthResponse();
-                console.log('AuthRes id_token: ' + authRes.id_token);
-                console.log('AuthRes access_token: ' + authRes.access_token);
-                console.log('AuthRes scope: ' + authRes.scope);
-                console.log('AuthRes expires_in: ' + authRes.expires_in);
-                console.log('AuthRes first_issued_at: ' + authRes.first_issued_at);
-                console.log('AuthRes expires_at: ' + authRes.expires_at);
-
-                // postAJAX('/server/sign-in', {id_token: id_token})
-                // .then(function(user) {
-                //     // The user is now signed in on the server too
-                //     // and the user should now have a session cookie
-                //     // for the whole site.
-                //     console.log('user.username: ' + user.username)
-                //     document.location.href = '/dashboard/' + user.username;
-                // })
-                // $.post("***URL-HERE***",
-                // {
-                //     id_token: id_token,
-                //     uniquename:
-                // });
-            }
-
-            function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                  console.log('User signed out.');
-                });
-            }
-        </script>
 
         <!-- Sign User Out of Pensive App but not Google Account -->
         <a href="#" onclick="signOut();">Sign out</a>
