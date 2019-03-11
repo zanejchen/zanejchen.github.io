@@ -37,8 +37,13 @@
                 console.log('Uniquename: ' + id_uname);
 
                 // The ID token you need to pass to your backend:
-                var id_token = googleUser.getAuthResponse().id_token;
-                console.log('AuthResponse id_token: ' + id_token);
+                var authRes = googleUser.getAuthResponse();
+                console.log('AuthRes id_token: ' + authRes.id_token);
+                console.log('AuthRes access_token: ' + authRes.access_token);
+                console.log('AuthRes scope: ' + authRes.scope);
+                console.log('AuthRes expires_in: ' + authRes.expires_in);
+                console.log('AuthRes first_issued_at: ' + authRes.first_issued_at);
+                console.log('AuthRes expires_at: ' + authRes.expires_at);
 
                 // postAJAX('/server/sign-in', {id_token: id_token})
                 // .then(function(user) {
